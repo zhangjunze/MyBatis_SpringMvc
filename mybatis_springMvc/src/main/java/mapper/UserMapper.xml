@@ -68,4 +68,7 @@
       passWord = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getAll" resultMap="BaseResultMap">
+  	select * from User;
+  </select>
 </mapper>
