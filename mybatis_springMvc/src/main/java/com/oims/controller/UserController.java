@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.oims.entity.User;
@@ -40,6 +41,18 @@ public class UserController {
 		request.setAttribute("total", 1);
 		logger.debug(JSON.toJSON(list));
 		
+	}
+	
+	@RequestMapping(path="/findUserToJson.htm",method=RequestMethod.GET)
+	private @ResponseBody List<User> findUserToJson(HttpServletRequest request){
+		List<User> list = userService.getAll();
+		/*Help<User> u = new Help<User>();
+		u.setList(list);
+		u.setTotal(1);*/
+		request.setAttribute("rows", list);
+		request.setAttribute("total", 1);
+		logger.debug(JSON.toJSON(list));
+		return list;
 	}
 	
 	
